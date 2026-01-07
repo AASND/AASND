@@ -1,13 +1,15 @@
 package com.aasnd.member;
 
-import java.util.ArrayList;
-import java.util.List;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 
+@Controller
+@RequiredArgsConstructor
 class RegisterMember {
-    private final static List<Member> database = new ArrayList<>();
+   private final MemberRepository memberRepository;
 
     void register(RegisterMemberRequest request) {
         final Member member = new Member(request.phoneNumber(), request.name());
-        database.add(member);
+        memberRepository.save(member);
     }
 }
